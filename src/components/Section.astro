@@ -1,0 +1,22 @@
+---
+interface Props {
+  title: string;
+  content: string;
+  image: string;
+  reverse?: boolean;
+}
+
+const { title, content, image, reverse = false } = Astro.props;
+---
+
+<section class={`min-h-screen flex items-center justify-center p-8 ${reverse ? 'bg-opacity-90 bg-gray-900' : 'bg-opacity-80 bg-black'}`}>
+  <div class={`max-w-7xl mx-auto flex flex-col md:flex-row items-center gap-12 ${reverse ? 'md:flex-row-reverse' : ''}`}>
+    <div class="flex-1" data-aos={reverse ? "fade-left" : "fade-right"}>
+      <img src={image} alt={title} class="rounded-lg shadow-2xl w-full h-[400px] object-cover" />
+    </div>
+    <div class="flex-1 space-y-6" data-aos={reverse ? "fade-right" : "fade-left"}>
+      <h2 class="text-4xl font-bold">{title}</h2>
+      <p class="text-xl leading-relaxed text-gray-300">{content}</p>
+    </div>
+  </div>
+</section>
